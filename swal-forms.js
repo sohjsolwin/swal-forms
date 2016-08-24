@@ -29,15 +29,15 @@
       buttonContainerTag: '.swal2-spacer', // doesn't exist, but swal2 doesn't use a container.
       cancelButtonTag: '.swal2-cancel',
       confirmButtonTag: '.swal2-confirm',
-      sweetAlertModalCancelButtonTag: sweetAlertModal + ' button' + cancelButtonTag,
-      sweetAlertModalConfirmButtonTag: sweetAlertModal + ' button' + confirmButtonTag,
+      sweetAlertModalCancelButtonTag: '.swal2-container button.swal2-cancel',
+      sweetAlertModalConfirmButtonTag: '.swal2-container button.swal2-confirm',
     } : {
       sweetAlertModal: '.sweet-alert',
       buttonContainerTag: '.sa-button-container',
       cancelButtonTag: '.cancel',
       confirmButtonTag: '.confirm',
-      sweetAlertModalCancelButtonTag: sweetAlertModal + ' button' + cancelButtonTag,
-      sweetAlertModalConfirmButtonTag: sweetAlertModal + ' button' + confirmButtonTag,
+      sweetAlertModalCancelButtonTag: '.sweet-alert button.cancel',
+      sweetAlertModalConfirmButtonTag: '.sweet-alert button.confirm',
     }
   }
 
