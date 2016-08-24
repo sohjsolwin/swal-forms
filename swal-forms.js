@@ -23,7 +23,14 @@
   // constructor for helper object
   function SwalForm (formFields) {
     this.formFields = formFields
-    this.domSelectors = (window.swal2) ? {
+    this.domSelectors = {
+      getSelector: function() {
+        if (window.Sweetalert2 && document.querySelector(this.swal2.sweetAlertModal))
+          return swal2;
+        else //default to swal
+          return swal;
+      },
+      swal2: { 
       // we're extending on sweetalert2 instead of sweetalert
       sweetAlertModal: '.swal2-modal',
       buttonContainerTag: '.swal2-spacer', // doesn't exist, but swal2 doesn't use a container.
@@ -31,7 +38,8 @@
       confirmButtonTag: '.swal2-confirm',
       sweetAlertModalCancelButtonTag: '.swal2-modal button.swal2-cancel',
       sweetAlertModalConfirmButtonTag: '.swal2-modal button.swal2-confirm',
-    } : {
+    },
+    swal1 : {
       sweetAlertModal: '.sweet-alert',
       buttonContainerTag: '.sa-button-container',
       cancelButtonTag: '.cancel',
@@ -128,9 +136,9 @@
     },
     insertFormInSwalModal: function (htmlFormString) {
       var formTag = stringToTag(htmlFormString)
-      var sweetAlertModal = document.querySelector(this.domSelectors.sweetAlertModal)
-      var buttonContainerTag = sweetAlertModal.querySelector(this.domSelectors.buttonContainerTag) || 
-                               sweetAlertModal.querySelector(this.domSelectors.cancelButtonTag)
+      var sweetAlertModal = document.querySelector(this.domSelectors.getSelector().sweetAlertModal)
+      var buttonContainerTag = sweetAlertModal.querySelector(this.domSelectors.getSelector().buttonContainerTag) || 
+                               sweetAlertModal.querySelector(this.domSelectors.getSelector().cancelButtonTag)
       // insert form before swal bottom buttons
       sweetAlertModal.insertBefore(formTag, buttonContainerTag)
 
@@ -142,13 +150,13 @@
     },
     removeSwalForm: function () {
       var formTag = document.querySelector('.' + this.formClass)
-      formTag && document.querySelector(this.domSelectors.sweetAlertModal).removeChild(formTag)
+      formTag && document.querySelector(this.domSelectors.getSelector.sweetAlertModal).removeChild(formTag)
     },
     allowClickingDirectlyOnInputs: function () {
       // sweet-alert attaches an onblur handler which prevents clicks on of non
       // button elements until click is made on the modal
-      document.querySelector(this.domSelectors.sweetAlertModalConfirmButtonTag).onblur = function () {}
-      document.querySelector(this.domSelectors.sweetAlertModalConfirmButtonTag).onblur = function () {}
+      document.querySelector(this.domSelectors.getSelector().sweetAlertModalConfirmButtonTag).onblur = function () {}
+      document.querySelector(this.domSelectors.getSelector().sweetAlertModalConfirmButtonTag).onblur = function () {}
     },
     getSelector: function () {
       var firstField = this.formFields[0]
