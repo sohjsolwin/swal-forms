@@ -48,6 +48,7 @@
       sweetAlertModalConfirmButtonTag: '.sweet-alert button.confirm',
     }
   }
+  }
 
   // helper methods
   extend(SwalForm.prototype, {
