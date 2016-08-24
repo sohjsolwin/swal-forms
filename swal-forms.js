@@ -25,12 +25,12 @@
     this.formFields = formFields
     this.domSelectors = (window.swal2) ? {
       // we're extending on sweetalert2 instead of sweetalert
-      sweetAlertModal: '.swal2-container',
+      sweetAlertModal: '.swal2-modal',
       buttonContainerTag: '.swal2-spacer', // doesn't exist, but swal2 doesn't use a container.
       cancelButtonTag: '.swal2-cancel',
       confirmButtonTag: '.swal2-confirm',
-      sweetAlertModalCancelButtonTag: '.swal2-container button.swal2-cancel',
-      sweetAlertModalConfirmButtonTag: '.swal2-container button.swal2-confirm',
+      sweetAlertModalCancelButtonTag: '.swal2-modal button.swal2-cancel',
+      sweetAlertModalConfirmButtonTag: '.swal2-modal button.swal2-confirm',
     } : {
       sweetAlertModal: '.sweet-alert',
       buttonContainerTag: '.sa-button-container',
